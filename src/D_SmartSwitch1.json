@@ -76,6 +76,7 @@
                 "text": "Settings"
             },
             "Position": "1",
+            "TopNavigationTab": "1",
             "TabType": "javascript",
             "ScriptName": "J_SmartSwitch1.js",
             "Function": "ss_showSettings"
@@ -117,4 +118,3 @@
     ],
     "DeviceType":"urn:schemas-hugheaves-com:device:SmartSwitch:1"
 }
-
