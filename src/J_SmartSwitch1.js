@@ -6,6 +6,7 @@ var SWITCH_SID = 'urn:upnp-org:serviceId:SwitchPower1';
 var ss_settingSid;
 var ss_settingVar;
 var ss_deviceId = 0;
+var ss_livedeviceIds;
 
 function ss_showSettings(deviceId) {
 	var panelHtml = '';
@@ -28,12 +29,15 @@ function ss_showSettings(deviceId) {
 			+ 'switch, click the "Remove" button next to the device. ';
 
 	panelHtml += 'To save your changes (and allow the plug-in to create '
-			+ 'or remove the smart switches), remember to click the "Save" button '
-			+ 'at the top of the screen after closing this dialog.</p>';
+			+ 'or remove the smart switches), remember to click the "Reload Luup" button '
+			+ 'at the bottom of the screen after adding or removing devices.</p>';
 
 	panelHtml += ss_deviceSelectDropdown(SWITCH_SID, SWITCH_SID);
 
 	panelHtml += ss_devicesTable();
+
+    //Reload luup button
+	panelHtml += '<p><input type="button" value="Reload Luup" onclick="ssc_reload_luup()" /></p>';
 
 	set_panel_html(panelHtml);
 }
@@ -82,6 +86,12 @@ function ss_removeUsedDevices(devices) {
 }
 
 function ss_getDeviceIdsSetting() {
+	//TIAAN was here
+	//Adapted this function to use a temp global variable to show live version of device list
+	//otherwise you cannot see added device immediately
+	if (ss_livedeviceIds != null) {
+		return ss_livedeviceIds;
+	}
 	var deviceIdsJSON = get_device_state(ss_deviceId, ss_settingSid,
 			ss_settingVar, 0);
 
@@ -90,6 +100,7 @@ function ss_getDeviceIdsSetting() {
 	if (deviceIdsJSON == "") {
 		return ([]);
 	} else {
+		ss_livedeviceIds = JSON.parse(deviceIdsJSON);
 		return (JSON.parse(deviceIdsJSON));
 	}
 }
@@ -123,15 +134,44 @@ function ss_deviceSelectDropdown(sid1, sid2) {
 	return panelHtml;
 }
 
+function ss_get_device_by_id(DeviceID) {
+//Wrote this function because the jsonp version does not work for some reason.
+	var devices = ss_findDevices(SWITCH_SID, SWITCH_SID);
+	
+	for ( var i = 0; i < devices.length; ++i) {
+		if (devices[i].id == DeviceID){
+			return devices[i];
+		}
+		
+	}
+
+	return device;
+}
+
+function ss_get_room_by_id(RoomID) {
+//Wrote this function because the jsonp version does not work for some reason.
+	var rooms = jsonp.ud.rooms;
+	
+	for ( var i = 0; i < rooms.length; ++i) {
+		if (rooms[i].id == RoomID){
+			return rooms[i];
+		}
+		
+	}
+
+	return room;
+}
+
 function ss_devicesTable() {
 	var panelHtml = '';
 
 	panelHtml += ss_tableHeader();
-
+	
 	var deviceIds = ss_getDeviceIdsSetting();
 
 	for ( var i = 0; i < deviceIds.length; ++i) {
-		panelHtml += ss_tableRow(jsonp.get_device_by_id(deviceIds[i]));
+		device = ss_get_device_by_id(deviceIds[i]);
+		panelHtml += ss_tableRow(device);
 	}
 
 	panelHtml += ss_tableFooter();
@@ -158,7 +198,8 @@ function ss_tableRow(device) {
 	var roomName = 'none';
 
 	if (device.room > 0) {
-		roomName = jsonp.get_room_by_id(device.room).name;
+		//roomName = jsonp.get_room_by_id(device.room).name;
+		roomName = ss_get_room_by_id(device.room).name;
 	}
 
 	panelHtml += '<tr style="border: 1px solid black">';
@@ -196,4 +237,8 @@ function ss_addSelectedDevice() {
 		ss_setDeviceIdsSetting(deviceIds);
 		ss_showSettings(ss_deviceId);
 	}
+}
+
+function ssc_reload_luup() {
+	application.luReload(); //I think this will cause UI7 to reload on it own!!
 }
