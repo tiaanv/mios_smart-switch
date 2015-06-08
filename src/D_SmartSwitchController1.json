@@ -1,7 +1,7 @@
 {
     "flashicon":"http://www.hugheaves.com/vera/resources/smart-switch/1.2/smart-switch-icon-50x50.png",
     "x":"6",
-    "y":"12",
+    "y":"6",
     "inScene":"1",
     "DisplayStatus":{
         
@@ -22,29 +22,29 @@
             "SceneGroup":[
                 {
                     "id":2,
-                    "top":0.75,
-                    "left":0,
+                    "top":0,
+                    "left":2,
                     "x":6,
-                    "y":2
+                    "y":1
                 },
                 {
                     "id":3,
-                    "top":3.75,
-                    "left":0,
+                    "top":0,
+                    "left":2,
                     "x":6,
-                    "y":2
+                    "y":1
                 },
                 {
                     "id":4,
-                    "top":6.75,
-                    "left":0,
+                    "top":0,
+                    "left":2,
                     "x":6,
                     "y":2
                 },
                 {
                     "id":5,
-                    "top":9.75,
-                    "left":0,
+                    "top":0,
+                    "left":2,
                     "x":6,
                     "y":2
                 },
@@ -53,25 +53,25 @@
                     "top":0,
                     "left":0,
                     "x":6,
-                    "y":1
+                    "y":2
                 },
                 {
                     "id":7,
+                    "top":0,
+                    "left":0,
+                    "x":6,
+                    "y":2
+                },
+                {
+                    "id":8,
                     "top":3,
                     "left":0,
                     "x":6,
                     "y":1
                 },
                 {
-                    "id":8,
-                    "top":6,
-                    "left":0,
-                    "x":6,
-                    "y":1
-                },
-                {
                     "id":9,
-                    "top":9,
+                    "top":7,
                     "left":0,
                     "x":6,
                     "y":1
@@ -117,8 +117,9 @@
             ],
             "Control":[
                 {
-                    "ControlGroup":"6",
+                    "ControlGroup":"2",
                     "ControlType":"label",
+					"ControlPair":"1",
                     "Label":{
                         "lang_tag":"on_level",
                         "text":"On Level:"
@@ -135,8 +136,9 @@
                     }
                 },
                 {
-                    "ControlGroup":"7",
+                    "ControlGroup":"3",
                     "ControlType":"label",
+					"ControlPair":"2",
                     "Label":{
                         "lang_tag":"off_level",
                         "text":"Off Level:"
@@ -146,757 +148,159 @@
                     "x":2,
                     "text_align":"left",
                     "Display":{
-                        "Top":75,
+                        "Top":35,
                         "Left":20,
                         "Width":200,
                         "Height":20
                     }
                 },
-                {
-                    "ControlGroup":"8",
+				{
+                    "ControlGroup":"5",
                     "ControlType":"label",
                     "Label":{
                         "lang_tag":"auto_timeout",
-                        "text":"Auto Timeout:"
+                        "text":"Aut Timeout:"
                     },
                     "top":0,
                     "left":0,
                     "x":2,
                     "text_align":"left",
                     "Display":{
-                        "Top":145,
+                        "Top":65,
                         "Left":20,
                         "Width":200,
                         "Height":20
                     }
                 },
                 {
-                    "ControlGroup":"9",
+                    "ControlGroup":"7",
                     "ControlType":"label",
                     "Label":{
                         "lang_tag":"manual_timeout",
-                        "text":"Manual Timeout:"
+                        "text":"Mnl Timeout:"
                     },
                     "top":0,
                     "left":0,
                     "x":2,
                     "text_align":"left",
                     "Display":{
-                        "Top":215,
+                        "Top":120,
                         "Left":20,
                         "Width":80,
                         "Height":20
                     }
                 },
                 {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":0,
-                    "Label":{
-                        "lang_tag":"cmd_off",
-                        "text":"Off"
-                    },
-                    "Display":{
-                        "Top":20,
-                        "Left":20,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"0"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"0"
-                            }
-                        ]
+                    "ControlGroup": "8",
+                    "ControlType": "variable",
+                    "top": "1",
+                    "left": "0",
+                    "Display": {
+                        "Service": "urn:hugheaves-com:serviceId:SmartSwitchController1",
+                        "Variable": "Mode",
+                        "Top": 85,
+                        "Left": 20,
+                        "Width": 75,
+                        "Height": 20
                     }
                 },
+				{
+					"ControlGroup": "2",
+					"ControlType": "slider",
+					"top": "0",
+					"left": "0",
+					"x":6,
+					"ControlPair": "1",
+					"ControlHeader": "1",
+					"ID": "NewOnLevel",
+					"Style": "numeric",
+					"LabelSymbol": {
+						"lang_tag": "ui7_ssc_label_symbol",
+						"text": "%;"
+					},
+					"Display": {
+						"Service": "urn:hugheaves-com:serviceId:SmartSwitchController1",
+						"Variable": "OnLevel",
+						"Top": 4,
+						"Left": 150,
+						"Width": 250,
+						"Height": 20
+					},
+					"Command": {
+                        "HumanFriendlyText": {
+								"lang_tag": "ui7_cmd_ssc_set_on_level",
+								"text": "On Level"
+						},
+						"Sufix": "%;",
+						"Description": {
+							"lang_tag": "ui7_cmd_on_level_description",
+							"text": "Enter a value between 0 and 100"
+						},
+						"Service": "urn:hugheaves-com:serviceId:SmartSwitchController1",
+						"Action": "SetOnLevel",
+						"Parameters": [
+							{
+								"Name": "NewLevel",
+								"ID": "NewOnLevel"
+							}
+						]
+					},
+					"ControlCode": "ssc_onlevel"
+				},
+				{
+					"ControlGroup": "3",
+					"ControlType": "slider",
+					"top": "0",
+					"left": "0",
+					"ControlPair": "2",
+					"ID": "NewOffLevel",
+					"Style": "numeric",
+					"LabelSymbol": {
+						"lang_tag": "ui7_ssc_label_symbol",
+						"text": "%;"
+					},
+					"Display": {
+						"Service": "urn:hugheaves-com:serviceId:SmartSwitchController1",
+						"Variable": "OffLevel",
+						"Top": 34,
+						"Left": 150,
+						"Width": 250,
+						"Height": 20
+					},
+					"Command": {
+                        "HumanFriendlyText": {
+								"lang_tag": "ui7_cmd_ssc_set_off_level",
+								"text": "Off Level"
+						},
+						"Sufix": "%;",
+						"Description": {
+							"lang_tag": "ui7_cmd_off_level_description",
+							"text": "Enter a value between 0 and 100"
+						},
+						"Service": "urn:hugheaves-com:serviceId:SmartSwitchController1",
+						"Action": "SetOffLevel",
+						"Parameters": [
+							{
+								"Name": "NewLevel",
+								"ID": "NewOffLevel"
+							}
+						]
+					},
+					"ControlCode": "ssc_offlevel"
+				},
                 {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":1,
-                    "Label":{
-                        "lang_tag":"cmd_5",
-                        "text":"5%"
-                    },
-                    "Display":{
-                        "Top":20,
-                        "Left":110,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"5"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"5"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":2,
-                    "Label":{
-                        "lang_tag":"cmd_10",
-                        "text":"10%"
-                    },
-                    "Display":{
-                        "Top":20,
-                        "Left":200,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"10"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"10"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":3,
-                    "Label":{
-                        "lang_tag":"cmd_20",
-                        "text":"20%"
-                    },
-                    "Display":{
-                        "Top":20,
-                        "Left":290,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"20"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"20"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":4,
-                    "Label":{
-                        "lang_tag":"cmd_30",
-                        "text":"30%"
-                    },
-                    "Display":{
-                        "Top":20,
-                        "Left":380,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"30"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"30"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":5,
-                    "Label":{
-                        "lang_tag":"cmd_40",
-                        "text":"40%"
-                    },
-                    "Display":{
-                        "Top":20,
-                        "Left":470,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"40"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"40"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":0,
-                    "Label":{
-                        "lang_tag":"cmd_50",
-                        "text":"50%"
-                    },
-                    "Display":{
-                        "Top":45,
-                        "Left":20,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"50"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"50"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":1,
-                    "Label":{
-                        "lang_tag":"cmd_60",
-                        "text":"60%"
-                    },
-                    "Display":{
-                        "Top":45,
-                        "Left":110,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"60"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"60"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":2,
-                    "Label":{
-                        "lang_tag":"cmd_70",
-                        "text":"70%"
-                    },
-                    "Display":{
-                        "Top":45,
-                        "Left":200,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"70"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"70"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":3,
-                    "Label":{
-                        "lang_tag":"cmd_80",
-                        "text":"80%"
-                    },
-                    "Display":{
-                        "Top":45,
-                        "Left":290,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"80"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"80"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":4,
-                    "Label":{
-                        "lang_tag":"cmd_90",
-                        "text":"90%"
-                    },
-                    "Display":{
-                        "Top":45,
-                        "Left":380,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"90"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"90"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"2",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":5,
-                    "Label":{
-                        "lang_tag":"cmd_on",
-                        "text":"On"
-                    },
-                    "Display":{
-                        "Top":45,
-                        "Left":470,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OnLevel",
-                        "Value":"100"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOnLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"100"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":0,
-                    "Label":{
-                        "lang_tag":"cmd_off",
-                        "text":"Off"
-                    },
-                    "Display":{
-                        "Top":90,
-                        "Left":20,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"0"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"0"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":1,
-                    "Label":{
-                        "lang_tag":"cmd_5",
-                        "text":"5%"
-                    },
-                    "Display":{
-                        "Top":90,
-                        "Left":110,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"5"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"5"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":0,
                     "left":2,
-                    "Label":{
-                        "lang_tag":"cmd_10",
-                        "text":"10%"
-                    },
-                    "Display":{
-                        "Top":90,
-                        "Left":200,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"10"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"10"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":3,
-                    "Label":{
-                        "lang_tag":"cmd_20",
-                        "text":"20%"
-                    },
-                    "Display":{
-                        "Top":90,
-                        "Left":290,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"20"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"20"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":4,
-                    "Label":{
-                        "lang_tag":"cmd_30",
-                        "text":"30%"
-                    },
-                    "Display":{
-                        "Top":90,
-                        "Left":380,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"30"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"30"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":5,
-                    "Label":{
-                        "lang_tag":"cmd_40",
-                        "text":"40%"
-                    },
-                    "Display":{
-                        "Top":90,
-                        "Left":470,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"40"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"40"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":0,
-                    "Label":{
-                        "lang_tag":"cmd_50",
-                        "text":"50%"
-                    },
-                    "Display":{
-                        "Top":115,
-                        "Left":20,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"50"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"50"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":1,
-                    "Label":{
-                        "lang_tag":"cmd_60",
-                        "text":"60%"
-                    },
-                    "Display":{
-                        "Top":115,
-                        "Left":110,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"60"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"60"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":2,
-                    "Label":{
-                        "lang_tag":"cmd_70",
-                        "text":"70%"
-                    },
-                    "Display":{
-                        "Top":115,
-                        "Left":200,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"70"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"70"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":3,
-                    "Label":{
-                        "lang_tag":"cmd_80",
-                        "text":"80%"
-                    },
-                    "Display":{
-                        "Top":115,
-                        "Left":290,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"80"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"80"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":4,
-                    "Label":{
-                        "lang_tag":"cmd_90",
-                        "text":"90%"
-                    },
-                    "Display":{
-                        "Top":115,
-                        "Left":380,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"90"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"90"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"3",
-                    "ControlType":"button",
-                    "top":1,
-                    "left":5,
-                    "Label":{
-                        "lang_tag":"cmd_on",
-                        "text":"On"
-                    },
-                    "Display":{
-                        "Top":115,
-                        "Left":470,
-                        "Width":80,
-                        "Height":20,
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Variable":"OffLevel",
-                        "Value":"100"
-                    },
-                    "Command":{
-                        "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetOffLevel",
-                        "Parameters":[
-                            {
-                                "Name":"NewLevel",
-                                "Value":"100"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "ControlGroup":"4",
-                    "ControlType":"button",
-                    "top":0,
-                    "left":0,
                     "Label":{
                         "lang_tag":"cmd_none",
                         "text":"None"
                     },
                     "Display":{
-                        "Top":160,
-                        "Left":20,
-                        "Width":80,
+                        "Top":65,
+                        "Left":150,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -914,18 +318,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":0,
-                    "left":1,
+                    "left":3,
                     "Label":{
                         "lang_tag":"cmd_30",
                         "text":"30s"
                     },
                     "Display":{
-                        "Top":160,
-                        "Left":110,
-                        "Width":80,
+                        "Top":65,
+                        "Left":195,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -943,18 +347,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":0,
-                    "left":2,
+                    "left":4,
                     "Label":{
                         "lang_tag":"cmd_60",
                         "text":"1m"
                     },
                     "Display":{
-                        "Top":160,
-                        "Left":200,
-                        "Width":80,
+                        "Top":65,
+                        "Left":240,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -972,18 +376,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":0,
-                    "left":3,
+                    "left":5,
                     "Label":{
                         "lang_tag":"cmd_120",
                         "text":"2m"
                     },
                     "Display":{
-                        "Top":160,
-                        "Left":290,
-                        "Width":80,
+                        "Top":65,
+                        "Left":285,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -1001,18 +405,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":0,
-                    "left":4,
+                    "left":6,
                     "Label":{
                         "lang_tag":"cmd_300",
                         "text":"5m"
                     },
                     "Display":{
-                        "Top":160,
-                        "Left":380,
-                        "Width":80,
+                        "Top":65,
+                        "Left":330,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -1030,18 +434,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":0,
-                    "left":5,
+                    "left":7,
                     "Label":{
                         "lang_tag":"cmd_900",
                         "text":"15m"
                     },
                     "Display":{
-                        "Top":160,
-                        "Left":470,
-                        "Width":80,
+                        "Top":65,
+                        "Left":375,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -1059,18 +463,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":1,
-                    "left":0,
+                    "left":2,
                     "Label":{
                         "lang_tag":"cmd_1800",
                         "text":"30m"
                     },
                     "Display":{
-                        "Top":185,
-                        "Left":20,
-                        "Width":80,
+                        "Top":90,
+                        "Left":150,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -1088,18 +492,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":1,
-                    "left":1,
+                    "left":3,
                     "Label":{
                         "lang_tag":"cmd_3600",
                         "text":"1h"
                     },
                     "Display":{
-                        "Top":185,
-                        "Left":110,
-                        "Width":80,
+                        "Top":90,
+                        "Left":195,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -1117,18 +521,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":1,
-                    "left":2,
+                    "left":4,
                     "Label":{
                         "lang_tag":"cmd_7200",
                         "text":"2h"
                     },
                     "Display":{
-                        "Top":185,
-                        "Left":200,
-                        "Width":80,
+                        "Top":90,
+                        "Left":240,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -1146,18 +550,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":1,
-                    "left":3,
+                    "left":5,
                     "Label":{
                         "lang_tag":"cmd_21600",
                         "text":"6h"
                     },
                     "Display":{
-                        "Top":185,
-                        "Left":290,
-                        "Width":80,
+                        "Top":90,
+                        "Left":285,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -1175,18 +579,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":1,
-                    "left":4,
+                    "left":6,
                     "Label":{
                         "lang_tag":"cmd_43200",
                         "text":"12h"
                     },
                     "Display":{
-                        "Top":185,
-                        "Left":380,
-                        "Width":80,
+                        "Top":90,
+                        "Left":330,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -1204,18 +608,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"4",
+                    "ControlGroup":"5",
                     "ControlType":"button",
                     "top":1,
-                    "left":5,
+                    "left":7,
                     "Label":{
                         "lang_tag":"cmd_86400",
                         "text":"24h"
                     },
                     "Display":{
-                        "Top":185,
-                        "Left":470,
-                        "Width":80,
+                        "Top":90,
+                        "Left":375,
+                        "Width":50,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"AutoTimeout",
@@ -1233,18 +637,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":0,
-                    "left":0,
+                    "left":2,
                     "Label":{
                         "lang_tag":"cmd_none",
                         "text":"None"
                     },
                     "Display":{
-                        "Top":230,
-                        "Left":20,
-                        "Width":80,
+                        "Top":115,
+                        "Left":150,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1262,18 +666,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":0,
-                    "left":1,
+                    "left":3,
                     "Label":{
                         "lang_tag":"cmd_30",
                         "text":"30s"
                     },
                     "Display":{
-                        "Top":230,
-                        "Left":110,
-                        "Width":80,
+                        "Top":115,
+                        "Left":195,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1291,18 +695,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":0,
-                    "left":2,
+                    "left":4,
                     "Label":{
                         "lang_tag":"cmd_60",
                         "text":"1m"
                     },
                     "Display":{
-                        "Top":230,
-                        "Left":200,
-                        "Width":80,
+                        "Top":115,
+                        "Left":240,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1320,18 +724,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":0,
-                    "left":3,
+                    "left":5,
                     "Label":{
                         "lang_tag":"cmd_120",
                         "text":"2m"
                     },
                     "Display":{
-                        "Top":230,
-                        "Left":290,
-                        "Width":80,
+                        "Top":115,
+                        "Left":285,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1349,18 +753,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":0,
-                    "left":4,
+                    "left":6,
                     "Label":{
                         "lang_tag":"cmd_300",
                         "text":"5m"
                     },
                     "Display":{
-                        "Top":230,
-                        "Left":380,
-                        "Width":80,
+                        "Top":115,
+                        "Left":330,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1378,18 +782,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":0,
-                    "left":5,
+                    "left":7,
                     "Label":{
                         "lang_tag":"cmd_900",
                         "text":"15m"
                     },
                     "Display":{
-                        "Top":230,
-                        "Left":470,
-                        "Width":80,
+                        "Top":115,
+                        "Left":375,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1407,18 +811,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":1,
-                    "left":0,
+                    "left":2,
                     "Label":{
                         "lang_tag":"cmd_1800",
                         "text":"30m"
                     },
                     "Display":{
-                        "Top":255,
-                        "Left":20,
-                        "Width":80,
+                        "Top":140,
+                        "Left":150,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1436,18 +840,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":1,
-                    "left":1,
+                    "left":3,
                     "Label":{
                         "lang_tag":"cmd_3600",
                         "text":"1h"
                     },
                     "Display":{
-                        "Top":255,
-                        "Left":110,
-                        "Width":80,
+                        "Top":140,
+                        "Left":195,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1465,18 +869,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":1,
-                    "left":2,
+                    "left":4,
                     "Label":{
                         "lang_tag":"cmd_7200",
                         "text":"2h"
                     },
                     "Display":{
-                        "Top":255,
-                        "Left":200,
-                        "Width":80,
+                        "Top":140,
+                        "Left":240,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1494,18 +898,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":1,
-                    "left":3,
+                    "left":5,
                     "Label":{
                         "lang_tag":"cmd_21600",
                         "text":"6h"
                     },
                     "Display":{
-                        "Top":255,
-                        "Left":290,
-                        "Width":80,
+                        "Top":140,
+                        "Left":285,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1523,18 +927,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":1,
-                    "left":4,
+                    "left":6,
                     "Label":{
                         "lang_tag":"cmd_43200",
                         "text":"12h"
                     },
                     "Display":{
-                        "Top":255,
-                        "Left":380,
-                        "Width":80,
+                        "Top":140,
+                        "Left":330,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1552,18 +956,18 @@
                     }
                 },
                 {
-                    "ControlGroup":"5",
+                    "ControlGroup":"7",
                     "ControlType":"button",
                     "top":1,
-                    "left":5,
+                    "left":7,
                     "Label":{
                         "lang_tag":"cmd_86400",
                         "text":"24h"
                     },
                     "Display":{
-                        "Top":255,
-                        "Left":470,
-                        "Width":80,
+                        "Top":140,
+                        "Left":375,
+                        "Width":40,
                         "Height":20,
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
                         "Variable":"ManualTimeout",
@@ -1571,7 +975,7 @@
                     },
                     "Command":{
                         "Service":"urn:hugheaves-com:serviceId:SmartSwitchController1",
-                        "Action":"SetManualTimout",
+                        "Action":"SetManualTimeout",
                         "Parameters":[
                             {
                                 "Name":"NewTimeout",
@@ -1585,19 +989,31 @@
 		{
 			"Label": {
                 "lang_tag": "settings",
-                "text": "Settings"
+                "text": "Sensors"
             },
             "Position": "1",
+            "TopNavigationTab": "1",
             "TabType": "javascript",
             "ScriptName": "J_SmartSwitchController1.js",
             "Function": "ssc_showSettings"
 		},
+		{
+            "Label": {
+                "lang_tag": "dim/time-out",
+                "text": "Dim/Time-out"
+            },
+            "Position": "2",
+            "TopNavigationTab": "1",
+            "TabType": "javascript",
+            "ScriptName": "J_SmartSwitchController1.js",
+            "Function": "ssc_dim_timeout"
+        },		
         {
             "Label":{
                 "lang_tag":"advanced",
                 "text":"Advanced"
             },
-            "Position":"2",
+            "Position":"3",
             "TabType":"javascript",
             "ScriptName":"shared.js",
             "Function":"advanced_device"
@@ -1628,4 +1044,3 @@
     ],
     "DeviceType":"urn:schemas-hugheaves-com:device:SmartSwitchController:1"
 }
-
